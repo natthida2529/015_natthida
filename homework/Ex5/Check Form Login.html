@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="CheckFormLogin" href="CheckFormLogin.css"> <!-- Link to your external stylesheet -->
+
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-image: url(image/pexels-tbee-82256.jpg);
+            
+        }
+        #image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px; /* Adjust margin to create space between image and form */
+        }
+
+        form {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4c74af;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #clickme {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #clickme:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>    
+    <h1>Sign Up</h1>
+    <button id="clickme">Click Me</button>
+
+    <form action=" ">
+        <p>Username :</p>
+        <input type="text" id="username" />
+        <p id="errorUsername" class="error"></p>
+        <p>Password :</p>
+        <input type="password" id="password" />
+        <p id="errorPassword" class="error"></p>
+        <input type="submit" value="OK" />
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").onsubmit = function (event) {
+                let username = document.querySelector("#username").value;
+                let password = document.querySelector("#password").value;
+
+                let checkusername = username.length >= 8;
+                if (!checkusername) {
+                    document.querySelector("#errorUsername").innerHTML = "Username must be at least 8 characters";
+                } else {
+                    document.querySelector("#errorUsername").innerHTML = "";
+                }
+
+                let checkpassword = password.length >= 8;
+                if (!checkpassword) {
+                    document.querySelector("#errorPassword").innerHTML = "Password must be at least 8 characters";
+                } else {
+                    document.querySelector("#errorPassword").innerHTML = "";
+                }
+
+                if (checkusername && checkpassword) {
+                    return true;
+                } else {
+                    event.preventDefault();
+                    return false;
+                }
+            };
+
+            document.querySelector("#clickme").onclick = function () {
+                document.querySelector("h1").innerHTML = "Good Bye";
+            };
+        });
+    </script>
+</body>
+</html>
